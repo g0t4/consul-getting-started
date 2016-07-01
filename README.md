@@ -29,3 +29,42 @@ If you want to run everything, there's 14 VMs in total, you need:
 
 If you have less than this, scale back the number of VMs you spin up, in the Vagrantfile, change the range `(1..3)` to `(1..2)` or `(1..1)`. If you update the consul-server count, update provision/cs-consul.d/server.json and set bootstrap_expect accordingly.
 
+## Commands to use to launch services before we switch to upstart jobs:
+
+### consul-server1 node
+```
+# vagrant ssh consul-server1
+
+consul agent -dev -advertise 172.20.20.31 -client 0.0.0.0 &
+```
+
+### web nodes
+
+```
+# vagrant ssh webX
+
+ip=$(ifconfig eth1 | grep 'inet addr' | awk '{ print substr($2,6) }')
+consul agent -advertise $ip -config-file /vagrant/common.json -config-file /vagrant/web.service.json &
+/vagrant/provision/setup.web.sh
+```
+
+### lb node
+
+```
+# vagrant ssh lb 
+
+/vagrant/provision/setup.lb.sh
+/vagrant/provision/install.consul-template.sh
+
+ip=$(ifconfig eth1 | grep 'inet addr' | awk '{ print substr($2,6) }')
+consul agent -advertise $ip -config-file /vagrant/common.json -config-file /vagrant/lb.service.json &
+
+consul-template -config /vagrant/provision/lb.consul-template.hcl &
+
+# Install config into KV store for lb
+curl -X PUT -d '4096' http://localhost:8500/v1/kv/prod/portal/haproxy/maxconn
+curl -X PUT -d '5s' http://localhost:8500/v1/kv/prod/portal/haproxy/timeout-connect
+curl -X PUT -d '50s' http://localhost:8500/v1/kv/prod/portal/haproxy/timeout-server
+curl -X PUT -d '50s' http://localhost:8500/v1/kv/prod/portal/haproxy/timeout-client
+curl -X PUT -d 'enable' http://localhost:8500/v1/kv/prod/portal/haproxy/stats
+```
