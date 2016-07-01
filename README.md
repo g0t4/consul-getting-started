@@ -31,9 +31,9 @@ If you have less than this, scale back the number of VMs you spin up, in the Vag
 
 ## Commands to use to launch services before we switch to upstart jobs:
 
-### consul-server1 node
+### consul-server node
 ```
-# vagrant ssh consul-server1
+# vagrant ssh consul-server
 
 consul agent -dev -advertise 172.20.20.31 -client 0.0.0.0 &
 ```
