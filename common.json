@@ -1,0 +1,27 @@
+{
+  "retry_join": [
+    "172.20.20.31"
+  ],
+  "data_dir": "/tmp/consul",
+  "client_addr": "0.0.0.0",
+  "checks": [
+    {
+      "id": "check_cpu_utilization",
+      "name": "CPU Utilization",
+      "script": "/vagrant/provision/hc/cpu_utilization.sh",
+      "interval": "10s"
+    },
+    {
+      "id": "check_mem_utilization",
+      "name": "MEM Utilization",
+      "script": "/vagrant/provision/hc/mem_utilization.sh",
+      "interval": "10s"
+    },
+    {
+      "id": "check_hdd_utilization",
+      "name": "HDD Utilization",
+      "script": "/vagrant/provision/hc/hdd_utilization.sh",
+      "interval": "10s"
+    }
+  ]
+}

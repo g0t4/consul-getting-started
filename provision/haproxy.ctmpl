@@ -1,0 +1,16 @@
+global
+    maxconn {{key "prod/portal/haproxy/maxconn"}}
+
+defaults
+    mode http
+    timeout connect {{key "prod/portal/haproxy/timeout-connect"}}
+    timeout client {{key "prod/portal/haproxy/timeout-client"}}
+    timeout server {{key "prod/portal/haproxy/timeout-server"}}
+
+listen http-in
+    bind *:80{{range service "web"}}
+    server {{.Node}} {{.Address}}:{{.Port}}{{end}}
+
+    stats {{key "prod/portal/haproxy/stats"}}
+    stats uri /haproxy
+    stats refresh 5s
