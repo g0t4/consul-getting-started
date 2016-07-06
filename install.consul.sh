@@ -24,3 +24,12 @@ unzip consul.zip
 sudo chmod +x consul
 sudo mv consul /usr/bin/consul
 
+# Create config directory
+sudo mkdir /etc/consul.d
+sudo chmod a+w /etc/consul.d
+
+# Install common consul config
+sudo cp /vagrant/provision/common-consul.d/* /etc/consul.d
+
+# Install upstart job
+sudo cp /vagrant/provision/upstart/consul.conf /etc/init/.

@@ -1,0 +1,41 @@
+---
+
+- name: Copy ip.html
+  template: src=ip.html.j2 dest=/home/vagrant/ip.html
+  notify:
+    - Restart web
+
+- name: Install pip
+  apt: name=python-pip
+  become: yes
+
+- name: Install docker-py for ansible to control docker
+  pip: name=docker-py
+  become: yes
+
+# Very much like docker-compose
+- name: Run nginx container
+  docker_container:
+    name: web
+    image: nginx
+    state: started
+    ports:
+    - "8080:80"
+    # Note at time of recording there's a bug with restart_policy that restarts container on each playbook run
+    # https://github.com/ansible/ansible-modules-core/issues/4027
+    # I still have the policy here because we need it for docker to restart container across reboots
+    # Also there's a bug that unless-stopped is not allowed even though it is in the docs, so setting to always for my demo
+    restart_policy: always
+    volumes:
+    - "/home/vagrant/ip.html:/usr/share/nginx/html/ip.html:ro"
+
+- name: Copy web specifc consul config
+  copy:
+    # make sure to have trailing / or web-consul.d folder will be copied into /etc/consul.d/web-consul.d
+    src: /vagrant/provision/web-consul.d/
+    dest: /etc/consul.d/
+  become: yes
+
+- name: Start consul service
+  service: name=consul state=started enabled=yes
+  become: yes

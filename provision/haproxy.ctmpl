@@ -8,9 +8,12 @@ defaults
     timeout server {{key "prod/portal/haproxy/timeout-server"}}
 
 listen http-in
+    option allbackups
     bind *:80{{range service "web"}}
     server {{.Node}} {{.Address}}:{{.Port}}{{end}}
-
+    {{range datacenters}}{{range service (print "web@" .) }}
+    server {{.Node}} {{.Address}}:{{.Port}} backup{{end}}
+    {{end}}
     stats {{key "prod/portal/haproxy/stats"}}
     stats uri /haproxy
     stats refresh 5s

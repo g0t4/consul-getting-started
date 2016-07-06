@@ -1,0 +1,9 @@
+{
+  "watches": [
+    {
+      "type": "event",
+      "name": "web-provision",
+      "handler": "/vagrant/provision/ansible/provision-self.sh"
+    }
+  ]
+}

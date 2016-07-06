@@ -9,3 +9,10 @@ curl $URL -o consul-template.zip
 unzip consul-template.zip
 sudo chmod +x consul-template
 sudo mv consul-template /usr/bin/consul-template
+
+# Create config directory
+sudo mkdir /etc/consul-template.d
+sudo chmod a+w /etc/consul-template.d
+
+# Install upstart job
+sudo cp /vagrant/provision/upstart/consul-template.conf /etc/init/.

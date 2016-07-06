@@ -1,0 +1,9 @@
+{
+  "Name": "webfailover",
+  "Service": {
+    "Service": "web",
+    "Failover": {
+      "NearestN": 3
+    }
+  }
+}

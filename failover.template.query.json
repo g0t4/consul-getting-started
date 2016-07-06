@@ -1,0 +1,13 @@
+{
+  "Name": "failover",
+  "Template": {
+    "Type": "name_prefix_match",
+    "Regexp": "^failover-(.*?)$"
+  },
+  "Service": {
+    "Service": "${match(1)}",
+    "Failover": {
+      "NearestN": 3
+    }
+  }
+}

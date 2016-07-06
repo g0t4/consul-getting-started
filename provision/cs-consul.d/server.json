@@ -1,0 +1,8 @@
+{
+  "server": true,
+  "bootstrap_expect": 3,
+  "ui": true,
+
+  "skip_leave_on_interrupt": true,
+  "leave_on_terminate": true
+}

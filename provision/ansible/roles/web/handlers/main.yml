@@ -1,0 +1,6 @@
+---
+
+- name: Restart web
+  docker_container:
+    name: web
+    restart: yes

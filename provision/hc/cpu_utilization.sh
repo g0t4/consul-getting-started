@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Modified from https://github.com/andrewpuch/consul_demo/blob/master/scripts/cpu_utilization.sh
+
 CPU_UTILIZATION=`top -b -n2 | grep -o "[\.0-9]* id" | tail -1 | cut -f1 -d' '`
 CPU_UTILIZATION=$(echo "scale = 2; 100-$CPU_UTILIZATION" | bc)
 CPU_UTILIZATION=${CPU_UTILIZATION%.*}

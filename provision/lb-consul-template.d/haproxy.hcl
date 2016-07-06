@@ -1,7 +1,7 @@
 template {
   // This is the source file on disk to use as the input template. This is often
   // called the "Consul Template template". This option is required.
-  source = "/vagrant/provision/haproxy.ctmpl"
+  source = "/home/vagrant/haproxy.ctmpl"
 
   // This is the destination path on disk where the source template will render.
   // If the parent directories do not exist, Consul Template will attempt to

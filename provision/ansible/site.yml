@@ -1,0 +1,7 @@
+---
+
+- name: Provision web server locally
+  hosts: localhost
+  connection: local
+  roles:
+    - { role: web, tags: ['web'] }
