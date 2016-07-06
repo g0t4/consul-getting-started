@@ -68,3 +68,28 @@ curl -X PUT -d '50s' http://localhost:8500/v1/kv/prod/portal/haproxy/timeout-ser
 curl -X PUT -d '50s' http://localhost:8500/v1/kv/prod/portal/haproxy/timeout-client
 curl -X PUT -d 'enable' http://localhost:8500/v1/kv/prod/portal/haproxy/stats
 ```
+
+### Run consul on desktop, joins NYC datacenter
+
+```bash
+
+consul agent \
+   -config-file desky.consul.json \
+   -config-file provision/common-consul.d/join.json
+
+```
+
+## Provisioning with events
+
+```bash
+
+# Manual watch, this is what's configured in (provision/web-consul.d/provision.watches.json), this command is just for reference if you want to use consul watch directly
+consul watch -type event -name web-provisn /vagrant/provision/ansible/provision-self.sh
+
+# Fire event at all nodes
+consul event -name web-provision
+
+# Fire event at specific node(s)
+consul event -name web-provision -node web1
+
+```
