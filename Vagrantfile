@@ -15,19 +15,11 @@ Vagrant.configure("2") do |config|
       end
     end
 
-    config.vm.define "#{dc}-lb" do |lb|
-      lb.vm.hostname = "#{dc}-lb"
-      lb.vm.network "private_network", ip: "#{ip_prefix}11"
-      lb.vm.provision "shell", path: "provision/install.consul-template.sh", privileged: false
-      lb.vm.provision "shell", path: "provision/setup.lb.sh", privileged: false
-    end
-
-    (1..3).each do |i|
-      config.vm.define "#{dc}-web#{i}" do |web|
-        web.vm.hostname = "#{dc}-web#{i}"
-        web.vm.network "private_network", ip: "#{ip_prefix}2#{i}"
-        web.vm.provision "shell", path: "provision/install.ansible.sh", privileged: false
-        web.vm.provision "shell", path: "provision/ansible/provision-self.sh", privileged: false
+    (1..4).each do |i|
+      config.vm.define "#{dc}-worker#{i}" do |worker|
+        worker.vm.hostname = "#{dc}-worker#{i}"
+        worker.vm.network "private_network", ip: "#{ip_prefix}2#{i}"
+        worker.vm.provision "shell", path: "provision/setup.worker.sh", privileged: false
       end
     end
 

@@ -3,13 +3,13 @@
 # copy config file for consul
 sudo cp /vagrant/provision/cs-consul.d/* /etc/consul.d
 
-# start the service
+# start the consul service
 sudo service consul start
 
 # Install server nomad config
 sudo cp /vagrant/provision/server-nomad.d/* /etc/nomad.d
 
-# start the service
+# start the nomad service
 sudo service nomad start
 
 # sleep a while to allow for leader election once last node is up to insert below keys
