@@ -15,6 +15,13 @@ Vagrant.configure("2") do |config|
       end
     end
 
+    config.vm.define "#{dc}-lb" do |lb|
+      lb.vm.hostname = "#{dc}-lb"
+      lb.vm.network "private_network", ip: "#{ip_prefix}11"
+      lb.vm.provision "shell", path: "provision/install.consul-template.sh", privileged: false
+      lb.vm.provision "shell", path: "provision/setup.lb.sh", privileged: false
+    end
+
     (1..4).each do |i|
       config.vm.define "#{dc}-worker#{i}" do |worker|
         worker.vm.hostname = "#{dc}-worker#{i}"
