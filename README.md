@@ -100,6 +100,10 @@ consul event -name web-provision -node web1
 ```bash
 
 nomad plan /vagrant/jobs/web.hcl 
-nomad run /vagrant/jobs/web.hcl 
-
+nomad run /vagrant/jobs/web.hcl
+ 
+# monitor http://172.20.20.11/haproxy during updates to see rolling update nature!
+# job is setup to update 1 node every 30 seconds
+# also can monitor consul:
+# http://172.20.20.31:8500/ui/#/nyc/services/web
 ```
