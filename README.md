@@ -93,3 +93,13 @@ consul event -name web-provision
 consul event -name web-provision -node web1
 
 ```
+
+## Nomad commands
+
+
+```bash
+
+nomad plan /vagrant/jobs/web.hcl 
+nomad run /vagrant/jobs/web.hcl 
+
+```
