@@ -1,8 +1,8 @@
 job "web" {
-  region = "nyc"
+  region = "us"
 
   datacenters = [
-    "nyc-1"
+    "nyc"
   ]
 
   type = "service"
