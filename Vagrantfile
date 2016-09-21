@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "boxcutter/ubuntu1404-docker"
+  config.vm.box = "wesmcclure/ubuntu1404-docker"
   config.vm.provision "shell", path: "install.consul.sh", privileged: false
   config.vm.provision "shell", path: "provision/install.nomad.sh", privileged: false
 
