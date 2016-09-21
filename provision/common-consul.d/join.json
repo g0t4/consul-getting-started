@@ -1,5 +1,3 @@
 {
-  "atlas_infrastructure": "wesdemos/consulha",
-  "atlas_token": "X",
-  "atlas_join": true
+  "retry_join": ["172.20.20.31"] 
 }
