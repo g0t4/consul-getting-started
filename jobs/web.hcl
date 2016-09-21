@@ -17,16 +17,16 @@ job "web" {
   group "webs" {
 
     # We want 5 web servers
-    count = 5
+    count = 3
 
     task "web" {
       # docker driver docs: https://www.nomadproject.io/docs/drivers/docker.html
       driver = "docker"
 
       config {
-        image = "nginx"
+        image = "nginx:1.10-alpine"
 
-        # nginx listens on a fixed port of 80
+        # nginx:1.10-alpine listens on a fixed port of 80
         # so we need to map container port 80 to the dynamic http port on the host
         # more about networking here: https://www.nomadproject.io/docs/jobspec/networking.html
         port_map {
