@@ -1,3 +1,7 @@
+## Errata
+
+- Now using vagrant box [wesmcclure/ubuntu1404-docker](https://atlas.hashicorp.com/wesmcclure/boxes/ubuntu1404-docker), not boxcutter. The boxcutter box was removed after this course was published.
+
 ## Setup
 
 - Clone this repository locally
