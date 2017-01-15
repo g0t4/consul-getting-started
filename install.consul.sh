@@ -16,7 +16,7 @@ PS1="$DARKGRAY\u@$BOLD$BLUE\h$DARKGRAY:\w\$ $NORMAL"
 END
 
 # Download consul
-CONSUL_VERSION=0.7.1
+CONSUL_VERSION=0.7.2
 curl https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip -o consul.zip
 
 # Install consul
