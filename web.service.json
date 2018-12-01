@@ -1,10 +1,36 @@
 {
-  "service": {
-    "name": "web",
-    "port": 8080,
-    "check": {
-      "http": "http://localhost:8080",
-      "interval": "10s"
+    "service": {
+        "name": "web",
+        "port": 8080,
+        "checks": 
+        [
+            {
+                "id": "web",
+                "http": "http://localhost:8080",
+                "interval": "10s"
+            }
+            ,
+            {
+                "id": "hdd",
+                "name": "HDD check",
+                "args": ["/vagrant/provision/hc/hdd_utilization.sh"],
+                "interval": "10s"
+
+            },
+            {
+                "id": "mem",
+                "name": "Mempory check",
+                "args": ["/vagrant/provision/hc/mem_utilization.sh"],
+                "interval": "10s"
+
+            },
+            {
+                "id": "cpu",
+                "name": "cpu check",
+                "args": ["/vagrant/provision/hc/cpu_utilization.sh"],
+                "interval": "10s"
+            }
+        ]
+
     }
-  }
 }
