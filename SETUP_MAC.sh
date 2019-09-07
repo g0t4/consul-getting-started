@@ -22,7 +22,7 @@ wget https://raw.githubusercontent.com/nzroller/consul-bash-completion/master/co
     -O `brew --prefix`/etc/bash_completion.d/consul
 
 # Add bash completion to bash profile
-cat >> ~/.bash_profile <<<SCRIPT
+cat >> ~/.bash_profile <<SCRIPT
 
 if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
     source `brew --prefix`/etc/bash_completion.d/vagrant
