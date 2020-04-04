@@ -22,6 +22,6 @@ wget https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_complet
 # Install consul bash completion, note that this is built for Consul v0.4:
 # https://github.com/nzroller/consul-bash-completion
 wget https://raw.githubusercontent.com/nzroller/consul-bash-completion/master/consul \
-    -O `brew --prefix`/etc/bash_completion.d/consul
+    -O /etc/bash_completion.d/consul
 
 # Close and reopen cygwin, use verify steps from Mac recommendations above
