@@ -6,19 +6,18 @@
 
 # Use cask to install pre-built binaries
 # https://caskroom.github.io/
-brew tap caskroom/cask
-brew cask install vagrant consul
+brew tap hombrew/cask
+brew install vagrant consul
 
 # Install autocompletion, optional:
 # https://github.com/Homebrew/homebrew-completions
 brew install bash-completion
-brew tap homebrew/completions
 brew install vagrant-completion
 
 # Install consul bash completion, note that this is built for Consul v0.4:
 # https://github.com/nzroller/consul-bash-completion
 brew install wget
-wget https://raw.githubusercontent.com/nzroller/consul-bash-completion/master/consul \ 
+wget https://raw.githubusercontent.com/nzroller/consul-bash-completion/master/consul \
     -O `brew --prefix`/etc/bash_completion.d/consul
 
 # Add bash completion to bash profile
@@ -37,7 +36,7 @@ brew install jq
 
 # Verify worked, I'm using vagrant 1.8.4 in this course and consul 0.6.4
 vagrant -v
-consul -v 
+consul -v
 
 # Verify auto complete
 # type: `vagrant ` and then hit tab, should see vagrant sub commands, not files. i.e. status, up, down
